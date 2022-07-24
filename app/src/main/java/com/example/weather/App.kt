@@ -15,3 +15,4 @@ class App : Application() {
         instance=this
     }
 }
+//l'interet de creer la bd ici est qu'on pourrait utiliser par plusieurs acitivity

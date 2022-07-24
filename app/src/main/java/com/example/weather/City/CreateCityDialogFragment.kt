@@ -6,9 +6,8 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.text.InputType
 import android.widget.EditText
-import androidx.fragment.app.DialogFragment
+import android.support.v4.app.DialogFragment
 import com.example.weather.R
-import java.nio.file.attribute.AclEntry
 
 class CreateCityDialogFragment :DialogFragment() {
 
@@ -27,12 +26,12 @@ class CreateCityDialogFragment :DialogFragment() {
         }
         builder.setTitle(R.string.CreateCity_title)
             .setView(input)
-            .setPositiveButton((R.string.CreateCity_positive), DialogInterface.OnClickListener {
-                _,_ ->
+            .setPositiveButton((R.string.CreateCity_positive),
+                DialogInterface.OnClickListener { _,_ ->
                 listener?.onDialogPositiveClick(input.text.toString())
             })
-            .setNegativeButton ((R.string.CreateCity_negative), DialogInterface.OnClickListener{
-                dialog,_ ->
+            .setNegativeButton ((R.string.CreateCity_negative),
+                DialogInterface.OnClickListener{ dialog,_ ->
                 dialog.cancel()
                 listener?.onDialogPositiveClick(input.text.toString())
             })

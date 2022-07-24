@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".CityActivity">
 
    <fragment
        android:id="@+id/city_fragment"
@@ -12,6 +12,6 @@
        android:layout_height="match_parent"
        android:name="com.example.weather.City.CityFragment"/>
 
-
+/* lorsque on lance city activity city fragment s'afficher
 
 </LinearLayout>
