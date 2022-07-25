@@ -34,6 +34,7 @@ class CityfragmentTest : Fragment(), CityAdapter.CityItemListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        cities= database.getAllCities()
         adapter= CityAdapter(cities, this)
         recyclerView.adapter=adapter
     }
@@ -71,6 +72,7 @@ class CityfragmentTest : Fragment(), CityAdapter.CityItemListener {
         //l'insertion de bd pour ça on va faire en haut la référence en db
         if (database.createCity(city)) {
             cities.add(city)
+            adapter.notifyDataSetChanged()
             Toast.makeText(context, "it is ok" ,Toast.LENGTH_LONG).show()
         }else
             Toast.makeText(context,

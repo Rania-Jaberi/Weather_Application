@@ -1,5 +1,6 @@
 package com.example.weather
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -19,9 +20,10 @@ private const val CITY_kEY_NAME="name"
 private const val CITY_TABLE_CREATE="""
 CREATE TABLE $CITY_TABLE_NAME(
            $CITY_KEY_ID INTEGER PRIMARY KEY,
-           $CITY_kEY_NAME TEXT
-)
+           $CITY_kEY_NAME TEXT)
 """
+private const val CITY_QUERY_SELECT_ALL ="SELECT * FROM $CITY_TABLE_NAME"
+
 // Creation de la requete create table
 
 
@@ -45,5 +47,25 @@ class Database (context:Context)
         city.id=id
         return id >0
 
+    }
+
+    @SuppressLint("Range")
+    fun getAllCities(): MutableList<City> {
+        val cities = mutableListOf<City>()
+
+        readableDatabase.rawQuery(CITY_QUERY_SELECT_ALL, null).use{ cursor ->
+            while (cursor.moveToNext()){
+                val city= City (
+                    cursor.getLong(cursor.getColumnIndex(CITY_KEY_ID)) ,
+                    cursor.getString(cursor.getColumnIndex(CITY_kEY_NAME))
+
+
+                        )
+                cities.add(city)
+
+            }
+        }
+
+        return cities
     }
 }
