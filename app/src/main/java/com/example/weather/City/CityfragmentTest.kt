@@ -1,60 +1,73 @@
 package com.example.weather.City
 
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import com.example.weather.App
+import com.example.weather.Database
 import com.example.weather.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CityfragmentTest.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CityfragmentTest : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var database: Database
+    private lateinit var cities: MutableList<City>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        database= App.database
+        cities= mutableListOf()
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_citytest, container, false)
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view=inflater?.inflate(R.layout.fragment_city, container,false)
+        return view
+
+    } //Faire le lien avec le layout
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater?.inflate(R.menu.fragment_city, menu )
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+//pour la gestion des clicks
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item?.itemId){
+            R.id.action_create_city -> {
+                showCreateCityDialog()
+                return true
+            }}
+
+
+        return super.onOptionsItemSelected(item)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CityfragmentTest.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CityfragmentTest().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun showCreateCityDialog() {
+
+        val createCityFragment= CreateCityDialogFragment()
+        createCityFragment.listener = object: CreateCityDialogFragment.CreateCityDialogListener{
+            override fun onDialogPositiveClick(CityName: String) {
+                SaveCity(City(CityName))
             }
+            override fun onDialogNegativeClick() {}
+        }
+
+        fragmentManager?.let { createCityFragment.show(it, "CreateCityDialogFragment") }
     }
+
+    private fun SaveCity(city: City){
+        //l'insertion de bd pour ça on va faire en haut la référence en db
+        if (database.createCity(city)) {
+            cities.add(city)
+            Toast.makeText(context, "it is ok" ,Toast.LENGTH_LONG).show()
+        }else
+            Toast.makeText(context,
+                "could not create city",
+                Toast.LENGTH_LONG).show()
+
+
+    }
+
 }

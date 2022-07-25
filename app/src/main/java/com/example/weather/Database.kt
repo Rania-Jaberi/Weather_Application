@@ -36,9 +36,10 @@ class Database (context:Context)
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
     }
+
     fun createCity(city: City): Boolean{
         val values = ContentValues()
-        values.put(CITY_TABLE_NAME,city.name)
+        values.put(CITY_kEY_NAME,city.name)
     Log.d(TAG, "Creating city: $values")
         val id= writableDatabase.insert(CITY_TABLE_NAME,null,values)
         city.id=id

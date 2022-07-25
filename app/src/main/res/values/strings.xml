@@ -2,7 +2,9 @@
     <string name="app_name">Weather</string>
     <string name="CreateCity_positive">create city</string>
     <string name="CreateCity_negative">Cancel</string>
-    <string name="CreateCity_cityhint">New York , Tunisia..</string>
+    <string name="CreateCity_cityhint">Tunis , Bizerte ..</string>
     <string name="CreateCity_title">new_city_name</string>
     <string name="menu_create_city">Create City</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

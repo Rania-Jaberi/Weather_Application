@@ -10,7 +10,7 @@
        android:id="@+id/city_fragment"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:name="com.example.weather.City.CityFragment"/>
+       android:name="com.example.weather.City.CityfragmentTest"/>
 
 /* lorsque on lance city activity city fragment s'afficher
 
