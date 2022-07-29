@@ -1,5 +1,9 @@
 package com.example.weather.City
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,54 +11,43 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.weather.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DeleteCityDialogFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DeleteCityDialogFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_delete_city_dialog, container, false)
-    }
+   interface DeleteCityDialogListener {
+       fun onDialogPositiveClick()
+       fun onDialogNegativeClick()
+   }
+    //on utilise la notion de Bundle mais on ne va pas la utiliser en extra mais plutot en argument
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DeleteCityDialogFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DeleteCityDialogFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        val EXTRA_CITY_NAME = "training.kotlin.weather.extras.EXTRA_CITY_NAME"
+        fun newInstance(cityName: String): DeleteCityDialogFragment {
+            val fragment = DeleteCityDialogFragment()
+            fragment.arguments= Bundle().apply {
+                putString(EXTRA_CITY_NAME, cityName)
             }
+            return fragment
+        }
     }
+    var listener: DeleteCityDialogListener? = null
+    private lateinit var cityName: String
+    @SuppressLint("UseRequireInsteadOfGet")
+    override fun onCreate(savedInstanceState: Bundle?){
+        super.onCreate(savedInstanceState)
+
+        cityName = arguments!!.getString(EXTRA_CITY_NAME)!!
+    }
+
+    fun onCreateDialog(savedInstanceState: Bundle?): Dialog{
+       val builder= AlertDialog.Builder(context)
+       builder.setTitle(getString(R.string.deletecity_title,cityName))
+           .setPositiveButton(getString(R.string.deletecity_positive),
+           DialogInterface.OnClickListener{_ , _ -> listener?.onDialogPositiveClick() })
+           .setNegativeButton(getString(R.string.deletecity_negative),
+               {_,_ ->listener?.onDialogNegativeClick()})
+       return builder.create()
+   }
 }
+

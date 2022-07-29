@@ -5,6 +5,9 @@
     <string name="CreateCity_cityhint">Tunis , Bizerte ..</string>
     <string name="CreateCity_title">new_city_name</string>
     <string name="menu_create_city">Create City</string>
+    <string name="deletecity_title">Do you really want to delete %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="deletecity_positive">Delete City</string>
+    <string name="deletecity_negative">Cancel</string>
 </resources>
