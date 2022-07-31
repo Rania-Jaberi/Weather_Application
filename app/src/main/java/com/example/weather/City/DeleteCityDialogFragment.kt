@@ -9,10 +9,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import com.example.weather.R
 
 
-class DeleteCityDialogFragment : Fragment() {
+class DeleteCityDialogFragment : DialogFragment() {
 
 
    interface DeleteCityDialogListener {
@@ -33,20 +34,22 @@ class DeleteCityDialogFragment : Fragment() {
     }
     var listener: DeleteCityDialogListener? = null
     private lateinit var cityName: String
-    @SuppressLint("UseRequireInsteadOfGet")
+
+
+
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-
-        cityName = arguments!!.getString(EXTRA_CITY_NAME)!!
+        cityName = arguments?.getString(EXTRA_CITY_NAME)!!
     }
 
-    fun onCreateDialog(savedInstanceState: Bundle?): Dialog{
+   override  fun onCreateDialog(savedInstanceState: Bundle?): Dialog{
        val builder= AlertDialog.Builder(context)
-       builder.setTitle(getString(R.string.deletecity_title,cityName))
-           .setPositiveButton(getString(R.string.deletecity_positive),
-           DialogInterface.OnClickListener{_ , _ -> listener?.onDialogPositiveClick() })
-           .setNegativeButton(getString(R.string.deletecity_negative),
-               {_,_ ->listener?.onDialogNegativeClick()})
+       builder.setTitle(getString(R.string.deletecity_title, cityName))
+           .setPositiveButton("Delete city",
+               { _, _ -> listener?.onDialogPositiveClick()  })
+           .setNegativeButton("cancel",
+               {_,_ -> listener?.onDialogNegativeClick()})
+
        return builder.create()
    }
 }
