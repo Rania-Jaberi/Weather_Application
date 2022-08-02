@@ -16,6 +16,10 @@ import com.example.weather.Utils.toast
 
 
 open class CityfragmentTest : Fragment(), CityAdapter.CityItemListener {
+    interface cityFragmentListner {
+        fun onCitySelected(city: City)
+    }
+    var listner: cityFragmentListner?= null
     private lateinit var database: Database
     private lateinit var cities: MutableList<City>
     private lateinit var recyclerView: RecyclerView
@@ -63,7 +67,10 @@ open class CityfragmentTest : Fragment(), CityAdapter.CityItemListener {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onCitySelected(city: City) { }
+    override fun onCitySelected(city: City) {
+      listner?.onCitySelected(city)
+
+    }
 
     override fun onCityDeleted(city: City) {
         showDeleteCityDialog(city)
