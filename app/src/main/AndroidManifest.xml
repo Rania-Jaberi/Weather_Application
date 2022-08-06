@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:replace="android:appComponentFactory" android:appComponentFactory="androidx"
     package="com.example.weather">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
 
         android:name=".App"

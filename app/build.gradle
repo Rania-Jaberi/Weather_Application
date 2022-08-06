@@ -67,7 +67,9 @@ implementation 'com.android.tools.build.jetifier:jetifier-core:0.0.1'
 //    implementation 'androidx.fragment.app.FragmentActivity'
     implementation 'androidx.fragment:fragment'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0 '
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation 'com.google.android.gms:play-services-contextmanager:9.4.0'
     testImplementation 'junit:junit:4.13.2'
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
