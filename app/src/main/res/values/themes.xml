@@ -13,4 +13,13 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="weatherData">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+    </style>
+    <style name="weatherLabel">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/secondary_text_light</item>
+    </style>
 </resources>

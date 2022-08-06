@@ -46,11 +46,67 @@
         app:layout_constraintLeft_toLeftOf="@id/weather_icon"
         app:layout_constraintTop_toTopOf="@id/weather_icon"
         app:layout_constraintVertical_bias="0.641" />
+
     <FrameLayout
         android:id="@+id/back_info"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:visibility="invisible"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/weather_icon"
-        app:layout_constraintBottom_toBottomOf="@id/weather_icon"/>
+        app:layout_constraintVertical_bias="0.136"
+        tools:layout_editor_absoluteX="14dp">
+
+        <TextView
+            android:id="@+id/temperature_label"
+            style="@style/weatherLabel"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="temperature:"
+            app:layout_constraintLeft_toLeftOf="@id/weather_icon"
+            app:layout_constraintTop_toTopOf="@id/back_info"
+            app:layout_constraintVertical_chainStyle="spread" />
+
+        <TextView
+            android:id="@+id/temperature"
+            style="@style/weatherData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="140dp"
+            android:text="30°c" />
+
+        <TextView
+            android:id="@+id/humidity_label"
+            style="@style/weatherLabel"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="Humidity:" />
+
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="140dp"
+            style="@style/weatherData"
+            android:text="52%" />
+
+        <TextView
+            android:id="@+id/pressure_label"
+            style="@style/weatherLabel"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            android:text="Pressure:" />
+        <TextView
+            android:id="@+id/pressure"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            android:layout_marginLeft="140dp"
+            style="@style/weatherData"
+            android:text="1014HPS" />
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
