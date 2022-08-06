@@ -13,6 +13,8 @@ import com.example.weather.App
 import com.example.weather.R
 import com.example.weather.openweathermap.WeatherWrapper
 import com.example.weather.openweathermap.mapOpenWeatherDataToWeather
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_weather.*
 import retrofit2.Call
 import retrofit2.Response
 import javax.security.auth.callback.Callback
@@ -85,6 +87,11 @@ class WeatherFragment : Fragment() {
     }
 
     private fun updateUi(weather: Weather) {
+        Picasso.get()
+            .load(weather.iconUrl)
+            .placeholder(R.drawable.ic_baseline_cloud_off_24)
+            .into(icon)
+
         weatherDescription.text = weather.description
         temperature.text = getString(R.string.weather_temperature_value, weather.temperature.toInt())
         humidity.text = getString(R.string.weather_humidity_value, weather.humidity)
