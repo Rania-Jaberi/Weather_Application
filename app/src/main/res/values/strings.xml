@@ -10,4 +10,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="deletecity_positive">Delete City</string>
     <string name="deletecity_negative">Cancel</string>
+    <string name="weather_temperature_value">%1$d</string>
+    <string name="weather_humidity_value">%1$d %%</string>
+    <string name="weather_pressure_value">%1$d hPa</string>
 </resources>
